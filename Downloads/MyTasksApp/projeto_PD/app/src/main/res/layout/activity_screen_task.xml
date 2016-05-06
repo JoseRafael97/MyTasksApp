@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_height="wrap_content"
+     android:layout_width="wrap_content">
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <include layout="@layout/include_toolbar" />
+
+
+        <CheckBox
+            android:id="@+id/check_activity"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/et_name_activity"
+            android:layout_marginTop="10dp"
+            android:text="@string/completed" />
+
+        <TextView
+            android:id="@+id/txt_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="70dp"
+            android:text="@string/title"
+            android:textAppearance="?android:attr/textAppearanceSmall" />
+
+        <EditText
+            android:id="@+id/et_name_activity"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_below="@id/txt_title"
+            android:layout_marginTop="1dp"
+            android:hint="@string/activity_name" />
+
+        <ImageView
+            android:id="@+id/image_calendar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/et_activity_deadline"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/ic_calendar" />
+
+        <TextView
+            android:id="@+id/txt_deadLine"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/check_activity"
+            android:layout_marginTop="10dp"
+            android:text="@string/dead_line"
+            android:textAppearance="?android:attr/textAppearanceSmall" />
+
+        <TextView
+            android:id="@+id/txt_planned_hour"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/et_activity_deadline"
+            android:layout_marginTop="10dp"
+            android:text="@string/activity_planned_hours"
+            android:textAppearance="?android:attr/textAppearanceSmall" />
+
+        <EditText
+            android:id="@+id/et_activity_deadline"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/txt_deadLine"
+            android:layout_marginTop="1dp"
+            android:layout_toEndOf="@+id/image_calendar"
+            android:layout_toStartOf="@+id/imageButton"
+            android:cursorVisible="false"
+            android:hint="@string/activity_deadline"
+            android:inputType="date" />
+
+        <ImageView
+            android:id="@+id/image_clock"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/et_activity_planned_hours"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/ic_clock" />
+
+
+        <EditText
+            android:id="@+id/et_activity_planned_hours"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/txt_planned_hour"
+            android:layout_marginTop="1dp"
+            android:layout_toEndOf="@+id/image_calendar"
+            android:cursorVisible="false"
+            android:hint="@string/activity_planned_hours"
+            android:inputType="number" />
+
+        <Spinner
+            android:id="@+id/spinner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/txt_category"
+            android:layout_toStartOf="@+id/bt_image_add" />
+
+        <TextView
+            android:id="@+id/txt_number_repetitions"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_below="@id/et_activity_planned_hours"
+            android:layout_marginTop="10dp"
+            android:text="@string/activity_number_of_repetitions" />
+
+
+        <EditText
+            android:id="@+id/et_activity_repetitions"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/txt_number_repetitions"
+            android:layout_toEndOf="@+id/image_repetitions"
+            android:ems="1"
+            android:hint="@string/activity_number_of_repetitions"
+            android:inputType="number" />
+
+        <ImageView
+            android:id="@+id/image_repetitions"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/et_activity_repetitions"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/ic_repetitions" />
+
+        <TextView
+            android:id="@+id/txt_category"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_below="@id/et_activity_repetitions"
+            android:layout_marginTop="10dp"
+            android:text="@string/menu_category" />
+
+
+        <ImageView
+            android:id="@+id/imageButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignTop="@+id/et_activity_deadline"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/ic_remove" />
+
+
+        <ImageView
+
+            android:id="@+id/image_clock2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/et_activity_worked_hours"
+            android:layout_below="@+id/txt_worked_hours"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/ic_clock" />
+
+
+        <TextView
+            android:id="@+id/txt_worked_hours"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/spinner_events"
+            android:layout_marginTop="10dp"
+            android:text="@string/worked_hours_activity" />
+
+        <EditText
+            android:id="@+id/et_activity_worked_hours"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/txt_worked_hours"
+            android:layout_marginTop="1dp"
+            android:layout_toEndOf="@+id/image_clock2"
+            android:hint="@string/worked_hours_activity"
+            android:inputType="number" />
+
+        <ImageButton
+            android:id="@+id/bt_image_add_events"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_below="@+id/txt_list_event"
+            android:background="@drawable/ic_add_screen" />
+
+        <ImageButton
+            android:id="@+id/bt_image_add"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/spinner"
+            android:layout_alignParentEnd="true"
+            android:background="@drawable/ic_add_screen" />
+
+        <TextView
+            android:id="@+id/txt_list_event"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_below="@id/spinner"
+            android:layout_marginTop="14dp"
+            android:text="@string/events_list" />
+
+
+        <br.edu.ifpb.mytasks.controller.activity.adapters.MultiSelectSpinner
+            android:id="@+id/spinner_events"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/txt_list_event"
+            android:layout_toStartOf="@+id/bt_image_add" />
+
+    </RelativeLayout>
+</ScrollView>

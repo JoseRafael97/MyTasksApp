@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:title="@string/menu_home">
+        <menu>
+            <item
+                android:id="@+id/nav_home"
+                android:icon="@drawable/ic_novi_home"
+                android:title="@string/menu_home" />
+
+        </menu>
+    </item>
+
+    <group android:checkableBehavior="single">
+
+            <item
+                android:id="@+id/nav_activities"
+                android:icon="@drawable/ic_navi_activity"
+                android:title="@string/menu_activities" />
+
+            <item
+                android:id="@+id/nav_event"
+                android:icon="@drawable/ic_navi_event"
+                android:title="@string/menu_event" />
+
+            <item
+                android:id="@+id/nav_category"
+                android:icon="@drawable/ic_navi_category"
+                android:title="@string/menu_category" />
+            <item
+                android:id="@+id/nav_graph"
+                android:icon="@drawable/ic_nav_graph"
+                android:title="@string/menu_graph" />
+
+    </group>
+
+
+    <item android:title="@string/menu_config">
+        <menu>
+            <item
+                android:id="@+id/nav_configuration"
+                android:icon="@drawable/ic_navi_config"
+                android:title="@string/menu_config" />
+
+        </menu>
+    </item>
+
+</menu>
