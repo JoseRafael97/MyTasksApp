@@ -1,0 +1,189 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/tools"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:padding="8dp">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="6dp"
+        android:layout_toEndOf="@+id/tv_activity_home"
+        android:text="@string/activity_vision"
+        android:textSize="16sp"
+        android:textStyle="bold" />
+
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="6dp"
+        app:cardPreventCornerOverlap="false"
+        app:cardUseCompatPadding="false"
+        card_view:cardCornerRadius="2dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="5dp"
+            android:paddingTop="5dp">
+
+            <TextView
+                android:id="@+id/lb_name_status_home_detail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="10dp"
+                android:text="@string/status_home"
+                android:textSize="14sp"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="19dp" />
+
+            <ImageView
+                android:id="@+id/iv_activity_home"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="30dp"
+                android:src="@drawable/ic_circle_current"
+                android:layout_below="@+id/lb_name_status_home_detail"
+                android:layout_alignEnd="@+id/lb_name_status_home_detail" />
+
+            <ImageView
+                android:id="@+id/tag_category_home"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingRight="3dp"
+                android:src="@drawable/ic_navi_category"/>
+
+            <TextView
+                android:id="@+id/tv_category_home"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="TESTE"
+                android:textStyle="bold"
+                android:paddingLeft="3dp"
+                android:paddingTop="7dp"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:textSize="14sp"
+                android:layout_alignTop="@+id/tag_category_home"
+                android:layout_toEndOf="@+id/tag_category_home" />
+
+            <ImageView
+                android:id="@+id/icon_calendar_home"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingRight="3dp"
+                android:src="@drawable/ic_calendar"
+                android:layout_below="@+id/tag_category_home"
+                android:layout_alignParentStart="true" />
+
+            <TextView
+                android:id="@+id/tv_label_deadline_home"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/deadline"
+                android:layout_marginTop="5dp"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:textSize="14sp"
+                android:layout_below="@+id/tag_category_home"
+                android:layout_toEndOf="@+id/icon_calendar_home" />
+
+            <TextView
+                android:id="@+id/tv_deadline_home_detail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingRight="10dp"
+                android:paddingLeft="3dp"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:layout_alignBaseline="@+id/tv_label_deadline_home"
+                android:layout_alignBottom="@+id/tv_label_deadline_home"
+                android:layout_toEndOf="@+id/tv_label_deadline_home" />
+
+            <ImageView
+                android:id="@+id/icon_planned_c_home"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingRight="3dp"
+                android:src="@drawable/ic_clock"
+                android:layout_below="@+id/icon_calendar_home"
+                android:layout_alignParentStart="true" />
+
+            <TextView
+                android:id="@+id/tv_label_planned_hours_home"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingTop="5dp"
+                android:text="@string/plain_of_hour_home"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:textSize="14sp"
+                android:layout_below="@+id/icon_calendar_home"
+                android:layout_toEndOf="@+id/icon_planned_c_home" />
+
+            <TextView
+                android:id="@+id/tv_planned_hours_home"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:textSize="14sp"
+                android:paddingLeft="3dp"
+                android:textStyle="bold"
+                android:layout_alignBottom="@+id/tv_label_planned_hours_home"
+                android:layout_toEndOf="@+id/tv_label_planned_hours_home" />
+
+            <ImageView
+                android:id="@+id/icon_repetition_home"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingRight="3dp"
+                android:layout_below="@+id/icon_planned_c_home"
+                android:src="@drawable/ic_repetitions" />
+
+            <TextView
+                android:id="@+id/tv_label_repetion_home"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/activity_number_of_repetitions_home"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:textSize="14sp"
+                android:layout_marginTop="5dp"
+                android:layout_below="@+id/icon_planned_c_home"
+                android:layout_toEndOf="@+id/icon_repetition_home" />
+
+            <TextView
+                android:id="@+id/tv_repetitions_home"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="3dp"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:layout_alignBottom="@+id/tv_label_repetion_home"
+                android:layout_toEndOf="@+id/tv_label_repetion_home" />
+
+
+        </RelativeLayout>
+
+
+    </android.support.v7.widget.CardView>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_margin="6dp"
+        android:text="@string/activity_events"
+        android:textSize="16sp"
+        android:textStyle="bold" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/list_events_activity_detail"
+        android:scrollbars="vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"/>
+
+</LinearLayout>
