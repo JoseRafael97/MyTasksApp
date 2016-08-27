@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:o="http://omnifaces.org/ui">
+
+<f:metadata>
+</f:metadata>
+
+
+<h:head>
+
+	<title>Cadastro</title>
+	<h:outputStylesheet name="painelgrid.css" library="css" />
+	<h:outputStylesheet name="background.css" library="css" />
+	<h:outputStylesheet name="buttonStyle.css" library="css" />
+	<h:outputStylesheet name="user.css" library="css" />
+
+
+</h:head>
+
+<h:body styleClass="body">
+
+
+	<h:form id="form">
+
+		<div class="painelsuper">
+			<p:toolbar style="background:#910001; border:none;">
+				<f:facet name="right">
+					<p:button type="button" outcome="login?faces-redirect=true"
+						value="Login" icon="fa fa-sign-in" />
+
+
+				</f:facet>
+
+
+			</p:toolbar>
+
+		</div>
+
+		<div class="ui-fluid  helper" align="center">
+				<p:panel style="width:80%; margin-top:5%">
+					<div align="left">
+
+						<p:tabView>
+
+							<p:tab title="Conta">
+
+								<p:messages />
+
+								<p:panelGrid columns="2" layout="grid">
+									<p:outputLabel for="email" value="e-mail"></p:outputLabel>
+									<p:inputText id="email"
+										value="#{customerBean.customer.user.email}" required="true"></p:inputText>
+
+
+									<p:outputLabel for="user" value="username"></p:outputLabel>
+									<p:inputText required="true" id="user"
+										value="#{customerBean.customer.user.login}"></p:inputText>
+
+									<p:outputLabel for="password" value="Senha"></p:outputLabel>
+									<p:password required="true" id="password"
+										value="#{customerBean.customer.user.password}"></p:password>
+
+								</p:panelGrid>
+							</p:tab>
+
+							<p:tab title="Informações Pessoais">
+
+								<p:messages />
+
+								<p:panelGrid columns="2" layout="grid">
+
+									<p:outputLabel for="name" value="nome"></p:outputLabel>
+									<p:inputText id="name" value="#{customerBean.customer.name}"
+										required="true"></p:inputText>
+
+									<p:outputLabel for="sexo" value="sexo" />
+									<p:selectOneMenu id="sexo"
+										value="#{customerBean.customer.sexo}" required="true">
+										<f:selectItem itemLabel="Selecione uma opção" itemValue="" />
+										<f:selectItem itemLabel="Masculino" itemValue="Masculino" />
+										<f:selectItem itemLabel="Feminino" itemValue="Feminino" />
+									</p:selectOneMenu>
+
+									<p:outputLabel for="cpf" value="CPF"></p:outputLabel>
+									<p:inputMask id="cpf" mask="999.999.999-99"
+										value="#{customerBean.customer.cpf}" required="true"></p:inputMask>
+
+
+								</p:panelGrid>
+							</p:tab>
+
+							<p:tab title="Endereço">
+
+								<p:messages />
+
+								<p:panelGrid id="panelAd" columns="2" layout="grid">
+
+									<p:outputLabel for="txtStreet" value="Rua" />
+									<p:inputText id="txtStreet"
+										value="#{addressBean.address.street}" required="true" />
+
+									<p:outputLabel for="txtneighhood" value="Bairro" />
+									<p:inputText id="txtneighhood"
+										value="#{addressBean.address.neighborhood}" required="true" />
+
+									<p:outputLabel for="txtNumbe" value="Nº " />
+									<p:inputText id="txtNumbe"
+										value="#{addressBean.address.number}" required="true" />
+
+									<p:outputLabel for="txtComplement" value="Complemento" />
+									<p:inputTextarea id="txtComplement"
+										value="#{addressBean.address.complement}" />
+
+
+									<p:outputLabel for="txtZipCode" value="Cep" />
+									<p:inputMask id="txtZipCode"
+										value="#{addressBean.address.zipCode}" mask="99999-999"
+										required="true" />
+
+
+									<p:outputLabel for="listState" value="Estado" />
+									<p:selectOneMenu id="listState" effect="fade"
+										value="#{addressBean.address.state}" required="true">
+										
+										<f:selectItem itemLabel="Selecione seu estado" itemValue="" />
+										<f:selectItems id="list" value="#{addressBean.stateName}"
+											var="state" itemLabel="#{state.nome}"
+											itemValue="#{state.nome}" required="true" />
+
+										<p:ajax event="change" update="listcity"
+											listener="#{addressBean.subjectSelectionChanged}" />
+
+									</p:selectOneMenu>
+
+									<p:outputLabel for="listcity" value="Cidade" />
+
+									<p:selectOneMenu id="listcity" effect="fade"
+										value="#{addressBean.address.city}" required="true" filter="true" filterMatchMode="startsWith">
+
+										<f:selectItems id="listcit" value="#{addressBean.loadingCity}"
+											var="city" itemLabel="#{city}" itemValue="#{city}" />
+
+									</p:selectOneMenu>
+
+
+
+								</p:panelGrid>
+
+							</p:tab>
+						</p:tabView>
+
+					</div>
+
+					<p:toolbar>
+
+						<f:facet name="left">
+							<p:commandButton value="Confirmar"
+								action="#{customerBean.save()}" update=":form">
+								
+								<f:setPropertyActionListener value="#{addressBean.address}" target="#{customerBean.address}"></f:setPropertyActionListener>	
+							</p:commandButton>
+						</f:facet>
+
+					</p:toolbar>
+				</p:panel>
+
+
+			</div>
+	</h:form>
+</h:body>
+</html>

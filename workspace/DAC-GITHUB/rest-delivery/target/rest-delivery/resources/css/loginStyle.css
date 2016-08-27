@@ -1,0 +1,60 @@
+@import url(https://fonts.googleapis.com/css?family=Nunito);
+
+.painel-login {
+	background: #910001;
+	margin: 0 auto;
+	margin-top: 10%;
+	border-radius: 6px;
+	max-width: 400px;
+	max-height: 800px;
+	height: 350px;
+	width: 100%;
+	box-shadow: 0 2px 4px #bfbfbf;
+}
+
+.ui-widget-content {
+	border: none !important;
+	background: none !important;
+}
+
+.ui-grid-row {
+	text-align: center !important;
+	font-size: 1em;
+}
+
+.ui-widget-content a {
+	color: #ffffff !important;
+	font-family: 'Nunito', sans-serif;
+	font-size: 1em;
+}
+
+.painel-login input:focus {
+	border: 1px solid #cc0000;
+	color: #333333;
+	font-family: 'Nunito', sans-serif;
+	
+}
+
+.painel-login input {
+	color: #A83436 !important;
+	font-family: 'Nunito', sans-serif;
+	
+}
+
+.ui-button {
+	cursor: pointer !important;
+	background: #eeeeec !important;
+	width: 100%;
+	border: 0 !important;
+	padding: 3px 3px !important;
+	color: #910001 !important;
+	-webkit-transition: 0.3s ease !important;
+	transition: 0.3s ease;
+	border-radius: 5px;
+	font-family: 'Nunito', sans-serif;
+}
+
+.ui-button:hover {
+	background: #F2BC31 !important;
+	font-family: 'Nunito', sans-serif;
+}

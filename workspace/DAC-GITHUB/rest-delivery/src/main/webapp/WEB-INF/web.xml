@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
+	version="3.1">
+	<display-name>rest-delivery</display-name>
+
+
+	<servlet>
+		<servlet-name>Faces Servlet</servlet-name>
+		<servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>Faces Servlet</servlet-name>
+		<url-pattern>*.xhtml</url-pattern>
+	</servlet-mapping>
+
+	<!-- Página inicial da aplicação -->
+	<welcome-file-list>
+		<welcome-file>pages/index.xhtml</welcome-file>
+	</welcome-file-list>
+
+	<!-- Troca os icons do primefaces por icones do Font_Awesome -->
+	<context-param>
+		<param-name>primefaces.FONT_AWESOME</param-name>
+		<param-value>true</param-value>
+	</context-param>
+
+	<!-- Tema primefaces Omega -->
+	<context-param>
+		<param-name>primefaces.THEME</param-name>
+		<param-value>omega</param-value>
+	</context-param>
+
+	<!-- Dar suporte a uploader de images dos produtos do sistema -->
+	<context-param>
+		<param-name>primefaces.UPLOADER</param-name>
+		<param-value>native</param-value>
+	</context-param>
+
+	<!-- Dar suporte a uploader de images dos produtos do sistema -->
+	<filter>
+		<filter-name>PrimeFaces FileUpload Filter</filter-name>
+		<filter-class>org.primefaces.webapp.filter.FileUploadFilter</filter-class>
+		<init-param>
+			<param-name>thresholdSize</param-name>
+			<param-value>51200</param-value>
+		</init-param>
+		<init-param>
+			<param-name>uploadDirectory</param-name>
+			<param-value>/home/workspace/</param-value>
+		</init-param>
+	</filter>
+
+	<!-- Dar suporte a uploader de images dos produtos do sistema -->
+	<filter-mapping>
+		<filter-name>PrimeFaces FileUpload Filter</filter-name>
+		<servlet-name>Faces Servlet</servlet-name>
+	</filter-mapping>
+
+
+
+	<!-- Controle de acesso -->
+
+	<context-param>
+		<!-- Referência: http://stackoverflow.com/questions/7490954/set-a-default-time-zone-for-fconvertdatetime -->
+		<param-name>javax.faces.DATETIMECONVERTER_DEFAULT_TIMEZONE_IS_SYSTEM_TIMEZONE</param-name>
+		<param-value>true</param-value>
+	</context-param>
+
+	<context-param>
+		<param-name>javax.faces.FACELETS_SKIP_COMMENTS</param-name>
+		<param-value>true</param-value>
+	</context-param>
+
+	<!-- Página de erro -->
+	<error-page>
+		<error-code>403</error-code>
+		<location>/erro403.xhtml</location>
+	</error-page>
+
+	<!-- configuração Login -->
+	<login-config>
+		<!-- NONE, BASIC, DIGEST, FORM, or CLIENT-CERT Referência: https://docs.oracle.com/javaee/7/tutorial/security-webtier002.htm#JEETT01227 -->
+		<auth-method>FORM</auth-method>
+		<realm-name>restDeliveryJdbcRealm</realm-name>
+		<form-login-config>
+			<form-login-page>/pages/login.xhtml</form-login-page>
+			<form-error-page>/pages/login.xhtml</form-error-page>
+
+		</form-login-config>
+	</login-config>
+
+	<!-- Acesso SOMENTE PARA ADMINISTRADORES -->
+	<security-constraint>
+		<display-name>Páginas do administrador</display-name>
+		<web-resource-collection>
+			<web-resource-name>Área protegida do administrador</web-resource-name>
+			<description></description>
+			<url-pattern>/pages/employee/admin/*</url-pattern>
+			<http-method>GET</http-method>
+			<http-method>POST</http-method>
+			<http-method>HEAD</http-method>
+			<http-method>PUT</http-method>
+			<http-method>OPTIONS</http-method>
+			<http-method>TRACE</http-method>
+			<http-method>DELETE</http-method>
+		</web-resource-collection>
+
+		<auth-constraint>
+			<description />
+			<role-name>ADMIN</role-name>
+		</auth-constraint>
+
+		<user-data-constraint>
+			<!-- CONFIDENTIAL, INTEGRAL, or NONE Referência: https://docs.oracle.com/javaee/7/tutorial/security-webtier002.htm#JEETT00775 -->
+			<transport-guarantee>CONFIDENTIAL</transport-guarantee>
+		</user-data-constraint>
+
+	</security-constraint>
+
+	<!-- Acesso público -->
+
+	<security-constraint>
+		<display-name>Acesso permitido a todos</display-name>
+		<web-resource-collection>
+			<web-resource-name>Área não protegida</web-resource-name>
+			<description />
+			<url-pattern>/pages/*</url-pattern>
+			<http-method>GET</http-method>
+			<http-method>POST</http-method>
+			<http-method>HEAD</http-method>
+			<http-method>PUT</http-method>
+			<http-method>OPTIONS</http-method>
+			<http-method>TRACE</http-method>
+			<http-method>DELETE</http-method>
+		</web-resource-collection>
+		<auth-constraint>
+			<description />
+			<role-name>ADMIN</role-name>
+			<role-name>CLIENTE</role-name>
+			<role-name>ENTREGADOR</role-name>
+			<role-name>OPERADOR</role-name>
+		</auth-constraint>
+		<user-data-constraint>
+			<transport-guarantee>CONFIDENTIAL</transport-guarantee>
+		</user-data-constraint>
+	</security-constraint>
+
+
+	<!-- Acesso permitido somente para cliente -->
+
+	<security-constraint>
+		<display-name>Acesso permitido somente para clientes</display-name>
+		<web-resource-collection>
+			<web-resource-name>Área não particular do cliente</web-resource-name>
+			<description />
+			<url-pattern>/pages/user/*</url-pattern>
+			<http-method>GET</http-method>
+			<http-method>POST</http-method>
+			<http-method>HEAD</http-method>
+			<http-method>PUT</http-method>
+			<http-method>OPTIONS</http-method>
+			<http-method>TRACE</http-method>
+			<http-method>DELETE</http-method>
+		</web-resource-collection>
+		<auth-constraint>
+			<description />
+			<role-name>CLIENTE</role-name>
+		</auth-constraint>
+		<user-data-constraint>
+			<transport-guarantee>CONFIDENTIAL</transport-guarantee>
+		</user-data-constraint>
+	</security-constraint>
+
+	<!-- Acesso Somente para entregadores e administradores -->
+	<security-constraint>
+		<display-name>Acesso permitido somente para Entregadores e
+			Administradores
+		</display-name>
+		<web-resource-collection>
+			<web-resource-name>Área não particular do entregador</web-resource-name>
+			<description />
+			<url-pattern>/pages/employee/deliveryman/*</url-pattern>
+			<http-method>GET</http-method>
+			<http-method>POST</http-method>
+			<http-method>HEAD</http-method>
+			<http-method>PUT</http-method>
+			<http-method>OPTIONS</http-method>
+			<http-method>TRACE</http-method>
+			<http-method>DELETE</http-method>
+		</web-resource-collection>
+		<auth-constraint>
+			<description />
+			<role-name>ENTREGADOR</role-name>
+			<role-name>ADMIN</role-name>
+			<role-name>OPERADOR</role-name>
+		</auth-constraint>
+		<user-data-constraint>
+			<transport-guarantee>CONFIDENTIAL</transport-guarantee>
+		</user-data-constraint>
+	</security-constraint>
+
+	<!-- Acesso Somente para operadores e administradores -->
+	<security-constraint>
+		<display-name>Acesso permitido a todos</display-name>
+		<web-resource-collection>
+			<web-resource-name>Área não particular do operador</web-resource-name>
+			<description />
+			<url-pattern>/pages/employee/*</url-pattern>
+			<http-method>GET</http-method>
+			<http-method>POST</http-method>
+			<http-method>HEAD</http-method>
+			<http-method>PUT</http-method>
+			<http-method>OPTIONS</http-method>
+			<http-method>TRACE</http-method>
+			<http-method>DELETE</http-method>
+		</web-resource-collection>
+		<auth-constraint>
+			<description />
+			<role-name>OPERADOR</role-name>
+			<role-name>ADMIN</role-name>
+		</auth-constraint>
+		<user-data-constraint>
+			<transport-guarantee>CONFIDENTIAL</transport-guarantee>
+		</user-data-constraint>
+	</security-constraint>
+
+	<!-- Security roles used by this web application -->
+	<security-role>
+		<role-name>ADMIN</role-name>
+	</security-role>
+	<security-role>
+		<role-name>CLIENTE</role-name>
+	</security-role>
+
+	<security-role>
+		<role-name>ENTREGADOR</role-name>
+	</security-role>
+
+	<security-role>
+		<role-name>OPERADOR</role-name>
+	</security-role>
+
+
+</web-app>
+

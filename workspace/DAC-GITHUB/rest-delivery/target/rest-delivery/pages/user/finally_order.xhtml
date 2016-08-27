@@ -1,0 +1,347 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE html>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:o="http://omnifaces.org/ui"
+	template="/WEB-INF/template/template_user.xhtml">
+
+	<f:metadata>
+
+		<f:event listener="#{finallyOrderBean.preRenderView()}"
+			type="preRenderView" />
+
+
+	</f:metadata>
+
+
+	<h:head>
+
+	</h:head>
+
+
+
+	<ui:define name="container">
+
+		<h:body>
+
+			<h:form id="form">
+
+				<p:growl id="growl" showDetail="true" sticky="true" />
+
+
+				<br />
+
+				<div align="center">
+					<p:wizard rendered="#{not empty customerKartBean.itemProducts}"
+						flowListener="#{finallyOrderBean.onFlowProcess}"
+						style="width:80%;" id="wizard">
+
+						<p:tab id="Itens" title="Itens">
+
+							<p:dataTable id="tabItens" var="itemProduct"
+								emptyMessage="Nao existe dados correspondetes."
+								value="#{customerKartBean.itemProducts}" editable="true"
+								style="margin-bottom:40px;text-align: center;" widgetVar="prod"
+								reflow="true">
+
+								<p:ajax event="rowEdit" listener="#{customerKartBean.onRowEdit}"
+									update=":form:growl" />
+								<p:ajax event="rowEditCancel"
+									listener="#{customerKartBean.onRowCancel}" update=":form:growl" />
+
+
+								<f:facet name="header">
+                     					   Itens Selecionados
+									</f:facet>
+
+								<p:column headerText="Nome" width="100">
+									<h:outputText value="#{itemProduct.itemMenu.product.name}" />
+								</p:column>
+
+
+								<p:column headerText="Quant." width="40">
+									<p:cellEditor>
+										<f:facet name="output">
+											<h:outputText value="#{itemProduct.amount}" />
+										</f:facet>
+
+										<f:facet name="input">
+											<p:spinner id="basic" value="#{itemProduct.amount}" />
+										</f:facet>
+
+									</p:cellEditor>
+								</p:column>
+
+								<p:column headerText="total" width="40">
+									<h:outputText value="R$ #{itemProduct.price}" />
+
+								</p:column>
+
+								<p:column width="5">
+									<p:rowEditor />
+								</p:column>
+
+								<p:column width="10">
+									<p:commandButton title="excluír" id="btExcluir" process="@this"
+										style="alignment-adjust: central; float:center;width:34px!important;background:white !important;"
+										icon="fa fa-times" update=":form"
+										action="#{customerKartBean.removeItemProduct()}">
+
+										<f:setPropertyActionListener value="#{itemProduct}"
+											target="#{customerKartBean.itemProduct}" />
+										<p:resetInput target="tabItens" />
+										<p:confirm header="Confirmar"
+											message="Deseja realmente excluir #{itemProduct.itemMenu.product.name}?"
+											icon="fa fa-exclamation-triangle" />
+									</p:commandButton>
+								</p:column>
+							</p:dataTable>
+
+						</p:tab>
+
+						<p:tab id="Pagamento" title="Pagamento">
+							<p:messages />
+
+							<div class="ui-fluid">
+
+								<p:panelGrid columns="2" layout="grid">
+
+									<p:outputLabel for="txtTitular" value="titular" />
+									<p:inputText id="txtTitular"
+										value="#{finallyOrderBean.order.payment.proprety}"
+										required="true">
+
+									</p:inputText>
+
+									<p:outputLabel for="txtNumber" value="Numero" />
+									<p:inputText id="txtNumber"
+										value="#{finallyOrderBean.order.payment.number}"
+										required="true" />
+
+
+									<p:outputLabel value="Forma pagamento" />
+									<p:selectOneMenu id="lis" effect="fade"
+										value="#{finallyOrderBean.order.payment.type}" required="true">
+										<f:selectItems id="listcatego"
+											value="#{finallyOrderBean.typePayment}" var="payment"
+											itemLabel="#{payment.nome}" itemValue="#{payment}" />
+
+									</p:selectOneMenu>
+
+
+
+								</p:panelGrid>
+
+							</div>
+						</p:tab>
+
+						<p:tab id="address" title="Entrega">
+							<p:messages />
+							<div class="ui-fluid">
+
+								<p:panelGrid id="panelAd" columns="2" layout="grid">
+
+									<p:outputLabel for="txtStreet" value="Rua" />
+									<p:inputText id="txtStreet"
+										value="#{finallyOrderBean.order.delivery.address.street}"
+										required="true" />
+
+									<p:outputLabel for="txtneighhood" value="Bairro" />
+									<p:inputText id="txtneighhood"
+										value="#{finallyOrderBean.order.delivery.address.neighborhood}"
+										required="true" />
+
+									<p:outputLabel for="txtNumbe" value="Nº " />
+									<p:inputText id="txtNumbe"
+										value="#{finallyOrderBean.order.delivery.address.number}" />
+
+									<p:outputLabel for="txtComplement" value="Complemento" />
+									<p:inputTextarea id="txtComplement"
+										value="#{finallyOrderBean.order.delivery.address.complement}" />
+
+
+
+									<p:outputLabel for="txtZipCode" value="Cep" />
+									<p:inputMask id="txtZipCode"
+										value="#{finallyOrderBean.order.delivery.address.zipCode}"
+										mask="99999-999" required="true" />
+
+
+									<p:outputLabel for="listState" value="Estado" />
+									<p:selectOneMenu id="listState" effect="fade"
+										value="#{finallyOrderBean.order.delivery.address.state}"
+										required="true" filter="true" filterMatchMode="startsWith">
+
+										<f:selectItems id="list" value="#{finallyOrderBean.stateName}"
+											var="state" itemLabel="#{state.nome}"
+											itemValue="#{state.nome}" />
+
+										<p:ajax event="change" update="listcity"
+											listener="#{finallyOrderBean.subjectSelectionChanged}" />
+
+									</p:selectOneMenu>
+
+									<p:outputLabel for="listcity" value="Cidade" />
+
+									<p:selectOneMenu id="listcity" effect="fade"
+										value="#{finallyOrderBean.order.delivery.address.city}"
+										required="true" filter="true" filterMatchMode="startsWith">
+
+										<f:selectItems id="listcit"
+											value="#{finallyOrderBean.loadingCity}" var="city"
+											itemLabel="#{city}" itemValue="#{city}" />
+
+									</p:selectOneMenu>
+
+
+
+								</p:panelGrid>
+							</div>
+						</p:tab>
+
+						<p:tab id="corfirm" title="Finalizar">
+							<p:messages />
+							<div class="ui-fluid">
+								<p:messages />
+
+								<br />
+								<p:panelGrid style="margin-bottom:20px;width:96%" columns="1"
+									layout="grid">
+
+									<p:dataList value="#{customerKartBean.itemProducts}"
+										var="itens" type="ordered">
+
+										<f:facet name="header">
+            							Itens do Pedido 
+        							</f:facet>
+									
+       										Nome: #{itens.itemMenu.product.name}, Quant.: #{itens.amount}, Preço total: #{itens.price}
+   								</p:dataList>
+
+									<p:outputLabel value="Total: R$ #{customerKartBean.priceAll}" />
+								</p:panelGrid>
+
+								<p:separator></p:separator>
+								<p:panel id="pag" header="Pagamento" toggleable="true"
+									toggleSpeed="500" widgetVar="pane"
+									style="margin-bottom:20px;width:96%;">
+
+
+									<p:panelGrid columns="2" layout="grid">
+
+										<p:outputLabel for="txTitular" value="titular" />
+										<p:outputLabel id="txTitular"
+											value="#{finallyOrderBean.order.payment.proprety}" />
+
+										<p:outputLabel for="tNumber" value="Numero" />
+										<p:outputLabel id="tNumber"
+											value="#{finallyOrderBean.order.payment.number}" />
+
+
+										<p:outputLabel value="Forma pagamento" />
+										<p:outputLabel value="#{finallyOrderBean.order.payment.type}" />
+
+
+									</p:panelGrid>
+								</p:panel>
+
+								<p:panel id="addr" header="Entrega" toggleable="true"
+									toggleSpeed="500" widgetVar="panel"
+									style="margin-bottom:20px;width:96%;">
+
+
+									<p:panelGrid columns="2" layout="grid">
+
+										<p:outputLabel for="txStreet" value="Rua" />
+										<p:outputLabel id="txStreet"
+											value="#{finallyOrderBean.order.delivery.address.street}" />
+
+										<p:outputLabel for="txneighhood" value="Bairro" />
+										<p:outputLabel id="txneighhood"
+											value="#{finallyOrderBean.order.delivery.address.neighborhood}" />
+
+										<p:outputLabel for="txZipCode" value="Cep" />
+										<p:outputLabel id="txZipCode"
+											value="#{finallyOrderBean.order.delivery.address.zipCode}" />
+
+
+										<p:outputLabel for="txstate" value="Estado" />
+										<p:outputLabel id="txstate"
+											value="#{finallyOrderBean.order.delivery.address.state}" />
+
+										<p:outputLabel for="listci" value="Cidade" />
+
+										<p:outputLabel id="listci"
+											value="#{finallyOrderBean.order.delivery.address.city}" />
+
+
+										<p:outputLabel for="txNumber" value="Nº " />
+										<p:outputLabel id="txNumber"
+											value="#{finallyOrderBean.order.delivery.address.number}" />
+
+										<p:outputLabel for="txComplement" value="Complemento" />
+										<p:outputLabel id="txComplement"
+											value="#{finallyOrderBean.order.delivery.address.complement}" />
+
+
+									</p:panelGrid>
+								</p:panel>
+							</div>
+							<p:messages id="msg" />
+
+							<p:commandButton value="confimar"
+								action="#{finallyOrderBean.finallybuy()}" update="growl">
+
+								<f:setPropertyActionListener
+									value="#{customerKartBean.itemProducts}"
+									target="#{finallyOrderBean.order.itemProducts}"></f:setPropertyActionListener>
+							</p:commandButton>
+
+							<p:commandButton action="#{customerKartBean.cancelOrder()}"
+								value="cancelar" update="growl"></p:commandButton>
+
+						</p:tab>
+					</p:wizard>
+
+					<p:panelGrid style="width: 25%; background: #eeeeec !important;"
+						columns="1" rendered="#{empty customerKartBean.itemProducts}">
+						<div align="center">
+
+							<i class="fa fa-cart-plus fa-5x"
+								style="color: #910001; font-size: 1300%" aria-hidden="true"></i>
+							<br />
+
+
+						</div>
+
+					</p:panelGrid>
+					<p:outputLabel
+						style="color:#910001;font-size;900px;font-family: 'Nunito', sans-serif;"
+						value="Carrinho Vazio"
+						rendered="#{empty customerKartBean.itemProducts}" />
+				</div>
+
+
+
+			</h:form>
+
+			<h:form id="dialog">
+				<p:growl id="message" showDetail="true" />
+
+				<p:confirmDialog global="true" showEffect="fade" hideEffect="fade"
+					widgetVar="dlg" header="Values">
+					<p:commandButton value="Sim" update="form" type="button"
+						styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+					<p:commandButton value="Não" type="button"
+						styleClass="ui-confirmdialog-no" icon="ui-icon-close"
+						update="tabProduct" />
+				</p:confirmDialog>
+
+			</h:form>
+		</h:body>
+	</ui:define>
+</ui:composition>
