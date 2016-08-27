@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:o="http://omnifaces.org/ui">
+
+<f:metadata>
+	<!-- <o:viewParam name="product" value="#{productBean.product}"
+		converter="#{productConverter}" /> -->
+	<f:event listener="#{employeeBean.preRenderView()}"
+		type="preRenderView" />
+</f:metadata>
+
+
+<h:head>
+	<title>Cadastro</title>
+	<h:outputStylesheet name="painelgrid.css" library="css" />
+	<h:outputStylesheet name="background.css" library="css" />
+	<h:outputStylesheet name="buttonStyle.css" library="css" />
+	<h:outputStylesheet name="user.css" library="css" />
+
+
+</h:head>
+
+<h:body styleClass="body">
+
+	<p:growl id="mensages" autoUpdate="true" showDetail="true"
+		showSummary="true" />
+
+	<h:form>
+		<p:growl id="msgs" showDetail="true" />
+
+		<div class="painelsuper">
+			<p:toolbar style="background:#910001; border:none;">
+				<f:facet name="right">
+					<p:button type="button" outcome="login?faces-redirect=true"
+						value="Login" icon="fa fa-sign-in" />
+
+
+				</f:facet>
+
+
+			</p:toolbar>
+
+		</div>
+
+		<div class="ui-fluid  helper">
+			<div align="center">
+				<p:panelGrid columns="2" layout="grid"
+					style="width:50%;margin-top:10%;">
+
+
+
+					<p:outputLabel for="name" value="nome"></p:outputLabel>
+					<p:inputText id="name" value="#{employeeBean.employee.name}"
+						required="true"></p:inputText>
+
+					<p:outputLabel for="sexo" value="sexo" />
+					<p:selectOneMenu id="sexo" value="#{employeeBean.employee.sexo}" required="true">
+						<f:selectItem itemLabel="Selecione uma opção" itemValue="" />
+						<f:selectItem itemLabel="Masculino" itemValue="Masculino" />
+						<f:selectItem itemLabel="Feminino" itemValue="Feminino" />
+					</p:selectOneMenu>
+
+					<p:outputLabel for="ctps" value="CTPS"></p:outputLabel>
+					<p:inputText id="ctps" value="#{employeeBean.employee.ctps}"></p:inputText>
+
+					<p:outputLabel for="cpf" value="CPF"></p:outputLabel>
+					<p:inputMask id="cpf" mask="999.999.999-99"
+						value="#{employeeBean.employee.cpf}" required="true"></p:inputMask>
+
+					<p:outputLabel for="tellphone" value="telefone"></p:outputLabel>
+					<p:inputMask mask="+99(99)999999999" id="tellphone"
+						value="#{employeeBean.employee.tellphone}" required="true"></p:inputMask>
+
+					<p:outputLabel for="email" value="e-mail"></p:outputLabel>
+					<p:inputText id="email" value="#{employeeBean.employee.user.email}"
+						required="true"></p:inputText>
+
+
+					<p:outputLabel for="user" value="username"></p:outputLabel>
+					<p:inputText required="true" id="user" value="#{employeeBean.employee.user.login}"></p:inputText>
+
+					<p:outputLabel for="password" value="Senha"></p:outputLabel>
+					<p:password required="true" id="password" value="#{employeeBean.employee.user.password}"></p:password>
+
+					<br />
+					<p:commandButton  value="Confirmar" action="#{employeeBean.save()}" update="msgs"></p:commandButton>
+
+
+					</p:panelGrid>
+			</div>
+		</div>
+	</h:form>
+</h:body>
+</html>

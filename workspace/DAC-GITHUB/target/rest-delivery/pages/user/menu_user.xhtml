@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE html>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	template="/WEB-INF/template/template_user.xhtml"
+	xmlns:o="http://omnifaces.org/ui">
+
+	<f:metadata>
+		<o:viewParam name="cat" value="#{cardapioBean.category}" />
+	</f:metadata>
+
+	<ui:define name="header">
+		<h:outputStylesheet name="alternative.css" library="css" />
+	</ui:define>
+
+
+
+	<h:head>
+
+	</h:head>
+
+	<ui:define name="title">Cardapio</ui:define>
+
+
+	<ui:define name="container">
+		<h:body>
+			<p:growl id="mensages" autoUpdate="true" showDetail="true"
+				showSummary="true" />
+
+			<h:form id="form">
+
+				<div align="center" class="ui-fluid">
+					<p:dataGrid var="item" value="#{cardapioBean.itemMenus}"
+						columns="6" layout="grid" rows="12" paginator="true" id="menus" >
+
+						<f:facet name="header" >
+
+							<div align="left">
+								<p:inputText id="globalFilter" onkeyup="PF('prod').filter()"
+									style="width:150px;;" placeholder="Digite para Buscar" />
+
+								<p:selectOneMenu id="filterOptions" style="display:inline; width:14%;float:right"
+									value="#{cardapioBean.optionFilter}">
+									<f:selectItem itemLabel="Selecione para filtrar" />
+
+									<f:selectItems id="listOp" value="#{cardapioBean.optionFind}"
+										var="option" itemLabel="#{option.nome}"
+										itemValue="#{option.nome}" />
+
+									<p:ajax event="change" update="menus"
+										listener="#{cardapioBean.filterOptions}" />
+								</p:selectOneMenu>
+
+								<p:selectOneMenu id="filterCategory" style="display:inline; width:14%;float:right"
+									value="#{cardapioBean.category}">
+									<f:selectItem itemLabel="Selecione uma categoria" />
+
+									<f:selectItems id="listCat" value="#{productBean.categories}"
+										var="category" itemLabel="#{category.nome}"
+										itemValue="#{category.nome}" />
+
+									<p:ajax event="change" update="menus"
+										listener="#{cardapioBean.filterCategory}" />
+
+								</p:selectOneMenu>
+							</div>
+						</f:facet>
+
+						<p:panel style="text-align:center;">
+							<p:panelGrid layout="grid" columns="1" style="width:100%" >
+
+								<p:graphicImage styleClass="img-menu" library="images"
+									name="#{item.product.pathFile}" />
+
+								<h:outputText  value="#{item.product.name}" />
+								<h:outputText value=" R$ #{item.price}" />
+
+								<p:commandButton value="adicionar" oncomplete="PF('dlg').show()"
+									update=":dialog">
+									<f:setPropertyActionListener value="#{item}"
+										target="#{customerKartBean.itemMenu}" />
+									<p:resetInput target="menus" />
+								</p:commandButton>
+
+								<p:commandButton icon="fa fa-plus" value="detalhes"></p:commandButton>
+
+							</p:panelGrid>
+						</p:panel>
+
+					</p:dataGrid>
+				</div>
+
+			</h:form>
+
+			<h:form id="dialog">
+				<p:growl id="message" showDetail="true" />
+
+				<p:dialog id="dialog" header="Registrar Item" widgetVar="dlg"
+					width="300" height="200" resizable="false" closable="true"
+					appendToBody="false" responsive="true"
+					style="background:white !important;" modal="true">
+
+					<div align="center" class="ui-fluid">
+
+						<p:panelGrid columns="2"
+							style="width:100% ;border:none!important;background:white !important"
+							layout="grid">
+
+							<h:outputText value="nome" />
+							<h:outputText id="name"
+								value="#{customerKartBean.itemMenu.product.name}" />
+
+							<h:outputText value="descrição" />
+							<p:outputLabel
+								value="#{customerKartBean.itemMenu.product.description}" />
+
+							<h:outputText value="preço" />
+							<h:outputText value=" R$ #{customerKartBean.itemMenu.price}" />
+
+							<h:outputText value="quantidade" />
+							<p:spinner id="basic"
+								value="#{customerKartBean.itemProduct.amount}" size="10" />
+
+
+						</p:panelGrid>
+						<br />
+
+						<p:commandButton value="confirmar"
+							action="#{customerKartBean.saveItemProduct()}"
+							oncomplete="PF('dlg').hide();" update=":form dialog"></p:commandButton>
+
+					</div>
+				</p:dialog>
+
+
+			</h:form>
+		</h:body>
+	</ui:define>
+</ui:composition>

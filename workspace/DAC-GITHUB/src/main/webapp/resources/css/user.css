@@ -1,0 +1,6 @@
+@CHARSET "UTF-8";
+
+.ui-state-highlight, .ui-widget-content .ui-state-highlight, .ui-widget-header .ui-state-highlight{
+	background: #910001!important;
+	border: #910001 !important;
+}

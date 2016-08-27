@@ -1,0 +1,14 @@
+@CHARSET "UTF-8";
+
+
+
+.ui-widget-content {
+	background: #eeeeec !important;
+	
+}
+
+
+
+.ui-button .btnwizard {
+	width: 10% !important;
+}
