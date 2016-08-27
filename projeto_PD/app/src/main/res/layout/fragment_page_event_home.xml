@@ -1,0 +1,16 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    tools:context="br.edu.ifpb.mytasks.controller.activity.fragments.PageEventHomeFragment">
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="200dp"
+        android:paddingLeft="50dp"
+        android:textSize="30dp"
+        android:text="EM CONSTRUÇÃO" />
+
+</FrameLayout>

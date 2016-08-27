@@ -1,0 +1,58 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".controller.activity.activity.NewCategoryActivity">
+
+
+    <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/AppTheme.AppBarOverlay">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            app:popupTheme="@style/AppTheme.PopupOverlay" />
+
+    </android.support.design.widget.AppBarLayout>
+
+    <TextView
+        android:id="@+id/tv_space"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <EditText
+        android:id="@id/et_name_category"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/tv_name_category"
+        android:layout_marginTop="70dp"
+        android:layout_below="@+id/tv_space"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:id="@+id/tv_lb_color"
+        android:layout_width="match_parent"
+        android:textSize="18dp"
+        android:text="@string/select_color_category"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/et_name_category"
+        android:layout_alignParentStart="true" />
+
+    <ImageButton
+        android:id="@+id/color_category"
+        android:layout_width="25dp"
+        android:paddingTop="8dp"
+        android:layout_height="25dp"
+        android:layout_marginStart="131dp"
+        android:background="@drawable/circle_shape"
+        android:layout_alignBottom="@+id/tv_lb_color"
+        android:layout_alignParentStart="true" />
+
+
+
+</RelativeLayout>

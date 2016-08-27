@@ -1,0 +1,42 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorItemSelectPrimary</item>
+        <item name="windowActionModeOverlay">true</item>
+        <item name="colorControlHighlight">@color/control_highlight</item>
+        <item name="actionModeBackground">@color/colorPrimary</item>
+    </style>
+
+
+    <style name="AppTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+
+    <!-- Tema base + NoActionBar -->
+    <style name="AppTheme.NoActionBar.NavDrawer">
+
+    </style>
+
+
+    <!-- Temas para a Toolbar, ver include_toolbar.xml -->
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+
+    <style name="MenuButtonsStyle">
+        <item name="fab_size">mini</item>
+        <item name="fab_showAnimation">@anim/jump_from_down</item>
+        <item name="fab_hideAnimation">@anim/jump_to_down</item>
+        <item name="fab_shadowColor">#ffff</item>
+        <item name="fab_colorNormal">#448AFF</item>
+        <item name="fab_colorPressed">#448AFF</item>
+        <item name="fab_colorRipple">#448AFF</item>
+    </style>
+
+</resources>

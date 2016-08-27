@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="et_name_category" type="id">et_name_category</item>
+    <item name="name_editcategory" type="id">name_edit_category</item>
+    <item name="txt_editcategory" type="id">txt_editcategory</item>
+
+</resources>

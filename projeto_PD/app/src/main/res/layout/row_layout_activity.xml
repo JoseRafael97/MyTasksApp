@@ -1,0 +1,112 @@
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:id="@+id/card_view_activity"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="5dp"
+    android:layout_marginTop="5dp"
+    android:layout_marginLeft="5dp"
+    android:layout_marginRight="5dp"
+    app:cardElevation="3dp"
+    app:cardUseCompatPadding="false"
+    app:cardPreventCornerOverlap="false"
+    app:cardMaxElevation="3dp"
+    app:cardCornerRadius="8dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/iv_activity_home"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingRight="3dp"
+            android:paddingTop="18dp"
+            android:src="@drawable/ic_circle_current"
+            android:layout_alignBottom="@+id/tv_activity_home"
+            android:layout_alignParentEnd="true" />
+
+        <TextView
+            android:textColor="@color/colorPrimary"
+            android:id="@+id/tv_activity_home"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:paddingLeft="10dp"
+            android:paddingTop="8dp"
+            android:textStyle="bold"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentStart="true" />
+
+
+        <TextView
+            android:textColor="@color/colorItemSelectPrimary"
+            android:id="@+id/tv_category_home"
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="14sp"
+            android:layout_marginLeft="5dp"
+            android:layout_below="@+id/tv_activity_home"
+            android:layout_toEndOf="@+id/color_shape"
+            android:text="@string/test"
+            />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:background="@drawable/circle_shape"
+            android:id="@+id/color_shape"
+            android:layout_alignTop="@+id/tv_category_home"
+            android:layout_alignParentStart="true" />
+
+        <TextView
+            android:textColor="@color/colorItemSelectPrimary"
+            android:id="@+id/tv_label_planned_hours_home"
+            android:text="@string/plain_of_hour"
+            android:paddingLeft="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="14sp"
+            android:layout_marginTop="6dp"
+            android:layout_below="@+id/tv_category_home"
+            android:layout_alignParentStart="true" />
+
+        <TextView
+            android:textColor="@color/colorItemSelectPrimary"
+            android:id="@+id/tv_planned_hours_home"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="12dp"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:layout_alignTop="@+id/tv_label_planned_hours_home"
+            android:layout_toEndOf="@+id/tv_label_planned_hours_home" />
+
+        <TextView
+            android:textColor="@color/colorItemSelectPrimary"
+            android:id="@+id/tv_label_deadline_home"
+            android:text="@string/deadline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="14sp"
+            android:layout_alignBaseline="@+id/tv_deadline_home_detail"
+            android:layout_alignBottom="@+id/tv_deadline_home_detail"
+            android:layout_toStartOf="@+id/tv_deadline_home_detail"
+            android:layout_marginEnd="8dp" />
+
+        <TextView
+            android:textColor="@color/colorItemSelectPrimary"
+            android:id="@+id/tv_deadline_home_detail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:paddingRight="10dp"
+            android:layout_below="@+id/tv_category_home"
+            android:layout_alignParentEnd="true" />
+
+    </RelativeLayout>
+</android.support.v7.widget.CardView>
